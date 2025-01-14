@@ -2,20 +2,671 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+.no-scrollbar {
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.no-scrollbar::-webkit-scrollbar {
+  display: none; 
 }
+
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
+    font-family: var(--font-roboto);
+    font-size: 20.5px;
+    font-weight: 300;
+    line-height: 1.5; 
+    margin: 0; 
+  }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .note{
+    color: rgb(255, 153, 51);
+  }
+
+  body.sidebar-open {
+    overflow: hidden;
+  }
+  
+  .sidebar-visible {
+    pointer-events: none;
+  }
+  
+  .sidebar-visible > * {
+    pointer-events: auto;
+  }
+
+  .overflow-y-auto {
+    overflow-y: scroll;
+    scrollbar-width: none;
+  }
+  
+  .overflow-y-auto::-webkit-scrollbar {
+    display: none; 
+  }
+
+  /* .overflow-y-auto {
+    scrollbar-width: thin;
+    scrollbar-color: #000000 transparent;
+  }
+  
+  .overflow-y-auto::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  .overflow-y-auto::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .overflow-y-auto::-webkit-scrollbar-thumb {
+    background-color: #000000;
+    border-radius: 0;
+  }
+
+  .overflow-y-auto::-webkit-scrollbar-button {
+    display: none; 
+  }*/
+
+  .item-year{
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .en{
+    font-weight: 700;
+  }
+  /* .maxius-logo {
+    display: block;
+    position: fixed;
+    top: 50px;
+    left: 100px;
+    z-index: 1;
+    color: #222;
+    font-size: 20.5px;
+    font-weight: bold;
+  
+    @media (max-width: 1024px) {
+      left: 60px;
+    }
+    @media (max-width: 780px) {
+      left: 50px;
+    }
+    @media (max-width: 576px) {
+      top: 30px;
+      left: 50px;
+    }
+  }
+
+  .menuAreaWrapper {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    .changeLangWrapper {
+      display: flex;
+      position: absolute;
+      top: 35px;
+      right: 0;
+  
+      &.real {
+        z-index: 2;
+      }
+    }
+  
+    .changeLangWrapperMenu {
+      display: flex;
+      position: absolute;
+      top: 85px;
+      right: 90px;
+  
+      &.changeLangWrapperMenu {
+        position: fixed;
+      }
+      &.open {
+        z-index: 2;
+      }
+    }
+  
+    .changeLangMemnu {
+      color: #fff;
+      cursor: pointer;
+      font-size: 21px;
+      text-align: right;
+      font-weight: 300;
+      &.en {
+        padding-right: 10px;
+      }
+  
+      &.select {
+        color: #ff9933;
+      }
+      @media screen and (max-width: 500px) {
+        font-size: 17px;
+      }
+    }
+  
+    .changeLang {
+      cursor: pointer;
+      font-size: 21px;
+      text-align: right;
+      font-weight: 300;
+      &.en {
+        margin-right: 10px;
+      }
+  
+      &.select {
+        color: #ff9933 !important;
+      }
+      @media screen and (max-width: 500px) {
+        font-size: 17px;
+      }
+    }
+  
+    a {
+      text-decoration: none;
+      color: #4d4d4d;
+      font-weight: 100;
+      transition: color 0.3s ease;
+    }
+  
+    a:hover {
+      color: #ffffff;
+    }
+  
+    #menuToggle {
+      display: block;
+      position: fixed;
+      top: 50px;
+      right: 90px;
+      z-index: 1;
+      user-select: none;
+  
+      @media (max-width: 576px) {
+        top: 30px;
+      }
+  
+      .btn-toggle {
+        position: relative;
+        cursor: pointer;
+        z-index: 1;
+        span {
+          display: block;
+          width: 40px;
+          height: 2px;
+          margin-bottom: 7.5px;
+          background: #222;
+          transform-origin: 7px -2px;
+          transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+            background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+  
+          &:first-child {
+            transform-origin: 0% 0%;
+          }
+          &:nth-last-child(2) {
+            transform-origin: 0% 100%;
+          }
+        }
+        &.open {
+          span {
+            height: 2px;
+            opacity: 1;
+            transform: rotate(45deg) translate(1px, -6px);
+            background: #fff !important;
+  
+            &:nth-child(2) {
+              opacity: 0;
+              transform: rotate(0deg) scale(0.2, 0.2);
+            }
+  
+            &:nth-child(3) {
+              transform: rotate(-45deg) translate(-1px, 1px);
+            }
+          }
+        }
+        @media screen and (max-width: 500px) {
+          span {
+            width: 30px;
+            margin-bottom: 5px;
+          }
+        }
+      }
+    }
+  
+    #menu {
+      position: fixed;
+      right: 0;
+      height: 100%;
+      margin-left: -475px;
+      margin-top: 0;
+      box-sizing: border-box;
+      top: 0;
+      transition: all 0.2s !important;
+      overflow-y: scroll;
+      width: 532px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+  
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      > * {
+        transition: all 0.2s;
+      }
+  
+      &.open {
+        transform: translateX(0);
+      }
+  
+      background-image: url(/side-menu-open.png);
+      background-size: cover;
+      list-style-type: none;
+      padding-left: 40px;
+      transform-origin: 0% 0%;
+      transform: translate(100%, 0);
+      transition: transform 0.6s cubic-bezier(0.77, 0.05, 0.05, 1);
+      .list-menu-sidebar {
+        padding-bottom: 40px;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+      .list {
+        transition: all 0.2s;
+        color: #fff;
+        font-weight: 300;
+        font-size: 39.5px;
+        &:hover {
+          color: #ff9933;
+        }
+        &.select,
+        &.active {
+          color: #ff9933;
+        }
+      }
+      .btn-items-3 {
+        &:hover {
+          color: #ff9933 !important;
+        }
+      }
+    }
+  
+    #menu li {
+      transition: all 0.2s;
+      line-height: 1;
+      padding-top: 25px;
+    }
+    .select {
+      color: #ff9933;
+      .list-items::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  
+    .infoWrapper {
+      border-top: 1px solid #fff;
+      font-weight: 100;
+      font-size: 13px;
+      color: #fff;
+      line-height: 19px;
+      p {
+        margin: 0;
+      }
+  
+      .en {
+        font-family: "Roboto", sans-serif;
+        p {
+          line-height: 1.18;
+          font-family: "Roboto", sans-serif;
+        }
+        span {
+          font-family: "Roboto", sans-serif;
+        }
+      }
+  
+      .ko {
+        font-family: "Noto Sans KR";
+  
+        p {
+          line-height: 1.37;
+          font-family: "Noto Sans KR";
+        }
+        span {
+          font-family: "Noto Sans KR";
+        }
+      }
+  
+      #adress {
+        padding-top: 50px;
+        padding-bottom: 30px;
+        margin-right: 52px;
+      }
+  
+      .link {
+        color: #ffffff;
+        text-decoration: none;
+        a {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+  .list-items {
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.5s;
+    transform-origin: top;
+    transition: 700ms ease-in-out;
+    transform: perspective(1000px) rotateX(-90deg);
+  
+    &-menu {
+      display: flex;
+      align-items: center;
+      padding-top: 20px;
+      img {
+        width: 12px;
+        height: 16px;
+        object-fit: cover;
+      }
+    }
+  
+    a {
+      display: block;
+      padding: 0 10px;
+      line-height: 1;
+      min-width: 85px;
+      font-size: 17.5px;
+      color: #fff;
+    }
+    .icon-down {
+      font-size: 24px;
+      color: #fff;
+      display: block;
+    }
+    .text {
+      display: flex;
+      align-items: center;
+      &:hover {
+        a,
+        .icon-down {
+          color: #ff9933;
+        }
+      }
+    }
+  }
+  .list-hidden0 {
+    max-height: 145.72px;
+    transition: 0.5s;
+  }
+  .list-hidden1 {
+    transition: 0.7s ease-in-out;
+    overflow: auto;
+    max-height: 700px;
+  }
+  .list-hidden2 {
+    transition: 0.7s ease-in-out;
+    max-height: 700px;
+    overflow: auto;
+  }
+  
+  @media (max-width: 1024px) {
+    .menuAreaWrapper {
+      .changeLangWrapperMenu {
+        right: 50px;
+      }
+      left: 0;
+      #menu {
+        width: 460px;
+        li {
+          font-size: 36px;
+        }
+      }
+      #menuToggle {
+        top: 50px;
+        right: 50px;
+      }
+      .infoWrapper {
+        #adress {
+          font-size: 14px;
+          line-height: 20px;
+          white-space: normal;
+          margin-right: 28px;
+        }
+      }
+    }
+  }
+  
+  @media (min-width: 781px) {
+    #menu {
+      width: 100%;
+  
+      li {
+        font-size: 35px;
+      }
+    }
+  
+    .infoWrapper {
+      bottom: 60px;
+    }
+  }
+  
+  @media (max-width: 781px) {
+    .menuAreaWrapper {
+      #menu {
+        width: 70%;
+        padding-left: 30px;
+        padding-top: 200px;
+        li {
+          font-size: 25px;
+        }
+      }
+      #menuToggle {
+        top: 50px;
+        right: 60px;
+      }
+      .infoWrapper {
+        #adress {
+          font-size: 15px;
+          margin-right: 0;
+        }
+      }
+    }
+  
+    .infoWrapper {
+      bottom: 60px;
+    }
+  }
+  @media (max-width: 600px) {
+    .menuAreaWrapper {
+      #menu {
+        width: 90%;
+        padding-left: 30px;
+        padding-top: 120px;
+        li {
+          font-size: 20px;
+          font-weight: 400;
+        }
+      }
+      #menuToggle {
+        top: 40px;
+        right: 20px;
+      }
+      .infoWrapper {
+        #adress {
+          padding-top: 25px;
+          font-size: 10px;
+          white-space: normal;
+        }
+      }
+    }
+  
+    .infoWrapper {
+      bottom: 60px;
+    }
+  }
+  
+  @media (max-width: 780px) {
+    #menu {
+      width: 60%;
+  
+      li {
+        font-size: 15px;
+      }
+  
+      .infoWrapper {
+        bottom: 80px;
+      }
+    }
+  }
+  
+  @media (min-width: 781px) {
+    #menu {
+      width: 460px;
+      padding: 50px;
+      padding-top: 150px;
+      padding-left: 32px;
+      li {
+        font-size: 36px;
+      }
+    }
+  
+    .infoWrapper {
+      bottom: 60px;
+    }
+  }
+  
+  @media (max-width: 780px) {
+    .menuAreaWrapper {
+      #menuToggle {
+        top: 50px;
+        right: 40px;
+      }
+      .changeLangWrapperMenu {
+        right: 40px;
+      }
+    }
+    #menu {
+      padding: 100px;
+      padding-top: 100px 25px 40px;
+      width: 60%;
+  
+      li {
+        font-size: 30px;
+      }
+  
+      .infoWrapper {
+        bottom: 15px;
+        #adress {
+          padding-top: 10px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 681px) {
+    .menuAreaWrapper {
+      #menuToggle {
+        top: 50px;
+        right: 40px;
+      }
+      .changeLangWrapperMenu {
+        right: -25px;
+      }
+    }
+  }
+  
+  @media (max-height: 640px) {
+    #menu {
+      padding: 50px;
+      padding-top: 60px;
+  
+      li {
+        font-size: 10px;
+      }
+    }
+  }
+  
+  @media (max-height: 550px) {
+    #menu {
+      padding-top: 60px;
+  
+      li {
+        font-size: 10px;
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .menuAreaWrapper {
+      .changeLangWrapperMenu {
+        right: 40px;
+      }
+    }
+    .list-items {
+      a {
+        font-size: 12px;
+      }
+    }
+  }
+  @media (max-width: 681px) {
+    .menuAreaWrapper {
+      .changeLangWrapperMenu {
+        right: 40px;
+      }
+    }
+    .list-items {
+      a {
+        font-size: 12px;
+      }
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .menuAreaWrapper {
+      #menuToggle {
+        top: 30px;
+        .btn-toggle {
+          padding: 5px;
+          margin: -5px;
+          &.open {
+            margin: 0px;
+            padding: 0 0 5px 5px;
+            span {
+              height: 1px;
+              opacity: 1;
+              transform: rotate(45deg) translate(2px, -5px);
+              background: #fff !important;
+              &:nth-child(2) {
+                opacity: 0;
+                transform: rotate(0deg) scale(0.2, 0.2);
+              }
+  
+              &:nth-child(3) {
+                transform: rotate(-45deg) translate(-1px, 3px);
+              }
+            }
+          }
+        }
+      }
+      .changeLangWrapperMenu {
+        top: 65px;
+      }
+    }
+  }
+   */
