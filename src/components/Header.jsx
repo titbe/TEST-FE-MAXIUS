@@ -15,13 +15,13 @@ export default function Header({ activeSection }) {
 
   useEffect(() => {
     if (isSidebarVisible) {
-      document.body.classList.add('sidebar-open');
+      document.body.classList.add("sidebar-open");
     } else {
-      document.body.classList.remove('sidebar-open');
+      document.body.classList.remove("sidebar-open");
     }
-  
+
     return () => {
-      document.body.classList.remove('sidebar-open');
+      document.body.classList.remove("sidebar-open");
     };
   }, []);
 
@@ -30,7 +30,7 @@ export default function Header({ activeSection }) {
   };
 
   return (
-    <header className="flex justify-between px-24 pt-14 z-20">
+    <header className="flex justify-between px-24 pt-14 z-20 max-sm:px-10 max-sm:pt-8">
       <div className="font-bold">
         <Link
           href="/#firstPage"
@@ -61,7 +61,7 @@ export default function Header({ activeSection }) {
         <div className="flex gap-2">
           <button
             onClick={(e) => {
-              e.stopPropagation(); 
+              e.stopPropagation();
               switchLanguage("en");
             }}
             className={`
@@ -80,7 +80,7 @@ export default function Header({ activeSection }) {
           </button>
           <button
             onClick={(e) => {
-              e.stopPropagation(); 
+              e.stopPropagation();
               switchLanguage("kr");
             }}
             className={`
@@ -110,12 +110,14 @@ export default function Header({ activeSection }) {
         />
       )}
 
-<div
-  ref={sidebarRef}
-  className={`fixed top-0 right-0 h-full w-1/3 bg-[url('/side-menu-open.png')] pt-[150px] pl-10 pr-[50px] pb-[50px] text-white transform transition-transform duration-300 ease-out ${
-    isSidebarVisible ? "translate-x-0 sidebar-visible" : "translate-x-full"
-  }`}
->
+      <div
+        ref={sidebarRef}
+        className={`fixed top-0 right-0 h-full w-1/3 bg-[url('/side-menu-open.png')] pt-[150px] pl-10 pr-[50px] pb-[50px] text-white transform transition-transform duration-300 ease-out  ${
+          isSidebarVisible
+            ? "translate-x-0 sidebar-visible max-sm:w-full"
+            : "translate-x-full"
+        }`}
+      >
         <ul className="list-none p-0 m-0 select-none">
           <div className="pb-10">
             <div className="list btn_0 active cursor-pointer hover:text-[rgb(255,153,51)] ease-in-out duration-700 transition-all">

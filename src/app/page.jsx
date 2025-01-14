@@ -48,9 +48,11 @@ export default function Home() {
       <div className="fixed w-full z-20">
         <Header activeSection={activeSection} />
       </div>
+
+      {/* First Section */}
       <section
         id="firstPage"
-        className="h-screen w-full snap-start flex relative"
+        className="h-screen w-full snap-start flex relative "
       >
         <Image
           src="/logo.png"
@@ -58,23 +60,29 @@ export default function Home() {
           quality={100}
           layout="fill"
           objectFit="cover"
-          className="absolute inset-0 z-10"
+          className="absolute inset-0 z-10 max-sm:hidden"
         />
-        <div className="z-10 mt-[120px] pl-32">
+        <div className="z-10 mt-[120px] pl-32 max-sm:px-10">
           {visibleSections.firstPage && (
             <>
-              <div className="text-[95.5px] font-bold text-[rgb(26,42,89)] animate-slideDown">
+              <div className="text-[95.5px] max-sm:text-5xl font-bold text-[rgb(26,42,89)] animate-slideDown ">
                 <br />
                 MAX I & US
               </div>
-              <p className="w-1/3 animate-slideLeftToRight">
-                Maxius is the only self-developed semiconductor company...
+              <p className="w-1/3 animate-slideLeftToRight max-sm:text-[15px] max-sm:w-2/3 max-sm:pt-10">
+                Maxius is the only self-developed semiconductor company that
+                focuses on developing High-Performance Servers. We provide
+                specialized solutions tailored towards different sectors of the
+                IT industry and strive to break into the global market as a
+                leader in server technology.
+                <br />
+                <p className="pt-16 max-sm:pt-5"> Together, we will be the best in value and speed.</p>
               </p>
             </>
           )}
         </div>
       </section>
-      
+
       {/* Second Section */}
       <section
         id="secondPage"
@@ -90,8 +98,8 @@ export default function Home() {
         />
         {visibleSections.secondPage && (
           <div className="z-10 text-white flex justify-center items-center w-full animate-slideLeftToRight">
-            <div className="w-3/4 px-24">
-              <div className="space-y-6 text-justify text-[40px] font-bold leading-7">
+            <div className="w-3/4 px-24 max-sm:px-5 max-sm:w-full">
+              <div className="space-y-6 max-sm:space-y-1 text-justify text-[40px] max-sm:text-xl font-bold leading-7">
                 <p id="text-one">
                   1. <span className="note">Self-produced</span> semiconductors
                   2. Production
@@ -137,13 +145,13 @@ export default function Home() {
           <div className="z-10 text-white flex items-center justify-center w-full h-full">
             <div
               id="page-three"
-              className="mx-36 w-full flex flex-row justify-center h-full"
+              className="mx-36 w-full flex flex-row justify-center h-full max-sm:flex-col"
             >
               <div
                 id="item"
                 className="flex-1 px-[15px] border-r-[1px] border-white hover:pr-[50px] hover:opacity-60 duration-300 group"
               >
-                <p className="text-[30px] font-bold mb-9 mt-44 animate-slideDown">
+                <p className="text-[30px] font-bold mb-9 mt-44 max-sm:text-xl animate-slideDown ">
                   Product
                 </p>
                 <p className="text-base opacity-0 transition-opacity duration-300 group-hover:opacity-100 ">
@@ -167,7 +175,7 @@ export default function Home() {
                 id="item"
                 className="flex-1 px-[15px] border-r-[1px] border-white hover:pr-[50px] hover:opacity-60 duration-300 group"
               >
-                <p className="text-[30px] font-bold mb-9 mt-44 animate-slideUp">
+                <p className="text-[30px] font-bold mb-9 mt-44 max-sm:text-xl animate-slideUp">
                   Technology
                 </p>
                 <p className="text-base opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -195,7 +203,7 @@ export default function Home() {
                 id="item"
                 className="flex-1 px-[15px] border-r-[1px] border-white hover:pr-[50px] hover:opacity-60 duration-300 group"
               >
-                <p className="text-[30px] font-bold mb-9 mt-44 animate-slideDown">
+                <p className="text-[30px] font-bold mb-9 mt-44 max-sm:text-xl animate-slideDown">
                   Application
                 </p>
                 <p className="text-base opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -226,7 +234,7 @@ export default function Home() {
                 id="item"
                 className="flex-1 px-[15px] hover:pr-[50px] hover:opacity-60 duration-300 group"
               >
-                <p className="text-[30px] font-bold mb-9 mt-44 animate-slideUp text-[rgb(255,153,51)]">
+                <p className="text-[30px] font-bold mb-9 mt-44 max-sm:text-xl animate-slideUp text-[rgb(255,153,51)]">
                   Blockchain
                 </p>
                 <p className="text-base opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -254,7 +262,9 @@ export default function Home() {
       >
         {visibleSections.fourthPage && (
           <div className="w-full flex flex-col items-center justify-center mt-20">
-            <h2 className="text-8xl uppercase font-bold mb-10 animate-slideDown">Story</h2>
+            <h2 className="text-8xl uppercase font-bold mb-10 animate-slideDown">
+              Story
+            </h2>
             <div className="flex justify-center px-20 overflow-y-auto animate-slideLeftToRight">
               <div className="item px-5 w-full">
                 <p className="font-bold text-[39.5px]">History</p>
